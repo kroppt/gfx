@@ -120,9 +120,9 @@ func (t Texture) SetPixelArea(r Rect, d []byte, genMipmap bool) error {
 	return nil
 }
 
-// SetPixel sets the texture at the given point to the given byte.
-func (t Texture) SetPixel(p Point, b byte, genMipmap bool) error {
-	return t.SetPixelArea(Rect{X: p.X, Y: p.Y, W: 1, H: 1}, []byte{b}, genMipmap)
+// SetPixel sets the texture at the given point to the given data.
+func (t Texture) SetPixel(p Point, d []byte, genMipmap bool) error {
+	return t.SetPixelArea(Rect{X: p.X, Y: p.Y, W: 1, H: 1}, d, genMipmap)
 }
 
 // GetData returns a byte slice of all the texture data

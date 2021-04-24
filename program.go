@@ -122,6 +122,21 @@ func (p Program) UploadUniformui(uniformName string, data ...uint32) error {
 	return nil
 }
 
+// UploadUniformMat4 uploads matrix data in the given uniform variable belonging
+// to the given program ID.
+//
+// Possible errors are ErrInvalidName.
+func (p Program) UploadUniformMat4(uniformName string, data [16]float32) error {
+	uniformID := gl.GetUniformLocation(p.id, &[]byte(uniformName + "\x00")[0])
+	if uniformID == -1 {
+		return fmt.Errorf("%w: \"%v\"", ErrInvalidName, uniformName)
+	}
+	gl.UseProgram(p.id)
+	gl.UniformMatrix4fv(uniformID, 1, false, &data[0])
+	gl.UseProgram(0)
+	return nil
+}
+
 // Bind sets the program to the current program.
 func (p Program) Bind() {
 	gl.UseProgram(p.id)

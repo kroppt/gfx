@@ -13,3 +13,10 @@ type Point struct {
 	X int32
 	Y int32
 }
+
+// Point defines a 3D point.
+type Point3D struct {
+	X int32
+	Y int32
+	Z int32
+}
